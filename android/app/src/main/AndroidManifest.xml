@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     
     <application
-        android:label="amibot_wear"
+        android:label="AmibotWear"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
