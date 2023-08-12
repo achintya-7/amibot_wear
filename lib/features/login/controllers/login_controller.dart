@@ -29,9 +29,8 @@ class LoginController extends GetxController {
   loginApi() async {
     int token = int.parse(loginTextController.text);
 
-    String url = '$emulatorLocalhost/login';
+    String url = '$serverUrl/login';
     Map<String, dynamic> body = {'token': token};
-
     final response = await HttpService.postRequest(url, body);
 
     if (response.statusCode == 500) {

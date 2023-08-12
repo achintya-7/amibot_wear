@@ -35,7 +35,7 @@ class ScheduleController extends GetxController {
   }
 
   fetchAPI(int token) async {
-    String url = '$emulatorLocalhost/class_schedule';
+    String url = '$serverUrl/class_schedule';
     Map<String, dynamic> body = {'token': token};
 
     final response = await HttpService.postRequest(url, body);
