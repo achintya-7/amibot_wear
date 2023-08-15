@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
               }
 
               if (scheduleController.classSchedule.value.isEmpty) {
-                return const Text('No classes today');
+                return const Text('No Classes Today');
               }
 
               log(scheduleController.classSchedule.value.length.toString());

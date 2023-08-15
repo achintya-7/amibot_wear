@@ -42,8 +42,8 @@ class ClassSchedule {
   factory ClassSchedule.fromMap(Map<String, dynamic> map) {
     return ClassSchedule(
       attendance: map['attendance'] as int,
-      courseCode: map['course_code'] as String,
-      courseName: map['course_name'] as String,
+      courseCode: map['courseCode'] as String,
+      courseName: map['courseName'] as String,
       time: map['time'] as String,
       faculty: map['faculty'] as String,
     );

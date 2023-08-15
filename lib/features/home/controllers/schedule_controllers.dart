@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:amibot_wear/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -49,14 +48,18 @@ class ScheduleController extends GetxController {
       await StorageService.removeToken();
       Get.offAndToNamed(LOGIN);
       return;
+    } else if (response.statusCode == 204) {
+      customSnackBar('Hooray 🎉');
+      return;
     } else if (response.statusCode != 200) {
-      customSnackBar('Something went wrong bad');
+      customSnackBar('Unknown Error');
       return;
     }
 
     final data = jsonDecode(response.body) as List<dynamic>;
+
     for (final item in data) {
-      log(item.toString());
+      classSchedule.value.add(ClassSchedule.fromJson(jsonEncode(item)));
     }
   }
 
