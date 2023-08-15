@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:http/http.dart';
 
@@ -12,9 +13,15 @@ class HttpService {
 
       final response = await post(uri, body: jsonString, headers: headers);
       return response;
-    } on Exception catch (e) {
-      log(e.toString());
+    } on SocketException catch (e) {
+      log("No Internet : $e");
+      return Response('', 503);
+    } on HttpException catch (e) {
+      log("Server Issue : $e");
       return Response('', 500);
+    } on FormatException catch (e) {
+      log("Server response issue : $e");
+      return Response('', 403);
     }
   }
 }

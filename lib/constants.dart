@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 String serverUrl = "https://py-amibot.fly.dev";
+String localUrl = "http://10.0.2.2:3333";
 
 customSnackBar(String message) {
   Get.snackbar(

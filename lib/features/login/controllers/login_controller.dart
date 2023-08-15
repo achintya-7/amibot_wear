@@ -33,14 +33,14 @@ class LoginController extends GetxController {
     Map<String, dynamic> body = {'token': token};
     final response = await HttpService.postRequest(url, body);
 
-    if (response.statusCode == 500) {
+    if (response.statusCode == 503 || response.statusCode == 500) {
       customSnackBar('Internet or Server Error');
       return;
     } else if (response.statusCode == 404) {
       customSnackBar('Token not found');
       return;
     } else if (response.statusCode != 200) {
-      customSnackBar('Something went wrong');
+      customSnackBar('Something went wrong bad');
       return;
     } else {
       customSnackBar('Login Successful');

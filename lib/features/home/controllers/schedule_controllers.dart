@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:amibot_wear/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -35,12 +36,12 @@ class ScheduleController extends GetxController {
   }
 
   fetchAPI(int token) async {
-    String url = '$serverUrl/class_schedule';
+    String url = '$localUrl/class_schedule';
     Map<String, dynamic> body = {'token': token};
 
     final response = await HttpService.postRequest(url, body);
 
-    if (response.statusCode == 500) {
+    if (response.statusCode == 503 || response.statusCode == 500) {
       customSnackBar('Internet or Server Error');
       return;
     } else if (response.statusCode == 404) {
@@ -49,15 +50,13 @@ class ScheduleController extends GetxController {
       Get.offAndToNamed(LOGIN);
       return;
     } else if (response.statusCode != 200) {
-      customSnackBar('Something went wrong');
+      customSnackBar('Something went wrong bad');
       return;
     }
 
-    final data = jsonDecode(response.body) as Map<String, dynamic>;
-    final List<dynamic> classScheduleList = data['classes'] as List<dynamic>;
-
-    for (final classSchedule in classScheduleList) {
-      this.classSchedule.value.add(ClassSchedule.fromMap(classSchedule as Map<String, dynamic>));
+    final data = jsonDecode(response.body) as List<dynamic>;
+    for (final item in data) {
+      log(item.toString());
     }
   }
 
