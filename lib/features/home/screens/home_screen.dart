@@ -1,7 +1,5 @@
-import 'dart:developer';
-
 import 'package:amibot_wear/features/home/controllers/schedule_controllers.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:amibot_wear/utils/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wear/wear.dart';
@@ -20,14 +18,12 @@ class HomeScreen extends StatelessWidget {
           builder: (context, shape, child) => Obx(
             () {
               if (scheduleController.loading.value) {
-                return const CupertinoActivityIndicator();
+                return loader();
               }
 
               if (scheduleController.classSchedule.value.isEmpty) {
-                return const Text('No Classes Today');
+                return const Center(child: Text('No Classes Today', style: TextStyle(fontSize: 15)));
               }
-
-              log(scheduleController.classSchedule.value.length.toString());
 
               return Center(
                 child: SizedBox(

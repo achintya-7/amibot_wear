@@ -1,3 +1,4 @@
+import 'package:amibot_wear/utils/loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,7 @@ class LoginScreen extends StatelessWidget {
         child: WatchShape(
           builder: (context, shape, child) => Obx(() {
             if (loginController.loading.value) {
-              return const CupertinoActivityIndicator();
+              return loader();
             }
 
             return Column(
